@@ -437,6 +437,181 @@ ASSET_MANAGER.downloadAll(function() {
                 </li>
             </ul>
         </article>
+        
+        <article>
+          <h3>
+            Phase 3 Objectives
+          </h3>
+          <ul>
+              <li>
+                Draw and fly aliens
+              </li>
+              <li>
+                Manage things in the game
+              </li>
+              <li>
+                Create a game loop
+              </li>
+        </article>
+        
+        <article>
+            <h3>Phase 3 Technologies</h3>
+            <ul>
+                <li>
+                    Game engine and Entities
+                </li>
+                <li>
+                    Loop <code>update()</code> and <code>draw()</code>
+                </li>
+                <li>
+                    Avoid <code>setInterval()</code> and <code>setTimeout()</code>
+                </li>
+                <li>
+                    Use <code>requestAnimationFrame(callback,element)</code>
+                </li>
+            </ul>
+        </article>
+        
+        <article class='smaller'>
+            <h3>
+                Phase 3 Code: Game engine
+            </h3>
+          <section>
+              <pre>
+function GameEngine() {
+  this.entities = [];
+  this.ctx = null;
+  this.lastUpdateTimestamp = null;
+  this.deltaTime = null;
+}
+
+GameEngine.prototype.draw = function(callback) {
+  // loop through all entities, call draw()
+}
+
+GameEngine.prototype.update = function() {
+  // loop through all entities, call update()
+}
+
+GameEngine.prototype.loop = function() {
+  var now = Date.now();
+  this.deltaTime = now - this.lastUpdateTimestamp;
+  this.update();
+  this.draw();
+  this.lastUpdateTimestamp = now;
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 3 Code: Game engine start
+            </h3>
+          <section>
+              <pre>
+GameEngine.prototype.start = function() {
+  console.log(&quot;starting game&quot;);
+  this.lastUpdateTimestamp = Date.now();
+  var that = this;
+  (function gameLoop() {
+      that.loop();
+      requestAnimFrame(gameLoop, that.ctx.canvas);
+  })();
+}
+</pre>
+            </section>
+        </article>
+        
+        <article class='smaller'>
+            <h3>
+                Phase 3 Code: <code>requestAnimationFrame()</code>
+            </h3>
+          <section>
+              <pre>
+window.requestAnimFrame = (function(){
+    return  window.requestAnimationFrame       ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame    ||
+            window.oRequestAnimationFrame      ||
+            window.msRequestAnimationFrame     ||
+            function(/* function */ callback, /* DOMElement */ element){
+              window.setTimeout(callback, 1000 / 60);
+            };
+})();
+</pre>
+            </section>
+            <p>
+                Learn more: <a href="http://paulirish.com/2011/requestanimationframe-for-smart-animating/">requestAnimationFrame for Smart Animating</a>
+            </p>
+        </article>
+        
+        <article class='smaller'>
+            <h3>
+                Phase 3 Code: Alien
+            </h3>
+          <section>
+              <pre>
+function Alien(game, radial_distance, angle) {
+  Entity.call(this, game);
+  // set properties
+}
+Alien.prototype = new Entity();
+Alien.prototype.constructor = Alien;
+
+Alien.prototype.update = function() {
+  this.x = this.radial_distance * Math.cos(this.angle);
+  this.y = this.radial_distance * Math.sin(this.angle);
+  this.radial_distance -= this.speed * this.game.deltaTime;
+
+  Entity.prototype.update.call(this);
+}
+
+Alien.prototype.draw = function(ctx) {
+  this.drawSpriteCentered(ctx);
+  Entity.prototype.draw.call(this, ctx);
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 3 Code: Draw images centered
+            </h3>
+          <section>
+              <pre>
+Entity.prototype.drawSpriteCentered = function(ctx) {
+  var x = this.x - this.sprite.width/2;
+  var y = this.y - this.sprite.height/2;
+  ctx.drawImage(this.sprite, x, y);
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 3: Launch it!
+            </h3>
+            <p>
+                <a href="http://evil-aliens-2.appspot.com/phase03/index.html" target="_new">http://evil-aliens-2.appspot.com/phase03/index.html</a>
+            </p>
+            <ul>
+                <li>
+                    Game engine, entities
+                </li>
+                <li>
+                    Loop and <code>requestAnimationFrame()</code>
+                </li>
+                <li>
+                    Aliens moving
+                </li>
+                <li>
+                    SPOT THE BUG?
+                </li>
+            </ul>
+        </article>
       
       <article>
         <p>
