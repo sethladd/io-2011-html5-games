@@ -22,7 +22,9 @@
     /* Your individual styles here, or just use inline styles if that’s
        what you want. */
     
-    
+    pre > .important {
+        background-color: yellow;
+    }
   </style>
 
   <body style='display: none'>
@@ -496,8 +498,8 @@ GameEngine.prototype.update = function() {
 GameEngine.prototype.loop = function() {
   var now = Date.now();
   this.deltaTime = now - this.lastUpdateTimestamp;
-  this.update();
-  this.draw();
+  <span class="important">this.update();</span>
+  <span class="important">this.draw();</span>
   this.lastUpdateTimestamp = now;
 }
 </pre>
@@ -562,7 +564,7 @@ Alien.prototype.constructor = Alien;
 Alien.prototype.update = function() {
   this.x = this.radial_distance * Math.cos(this.angle);
   this.y = this.radial_distance * Math.sin(this.angle);
-  this.radial_distance -= this.speed * this.game.deltaTime;
+  <span class="important">this.radial_distance -= this.speed * this.game.deltaTime;</span>
 
   Entity.prototype.update.call(this);
 }
