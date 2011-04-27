@@ -161,50 +161,87 @@
                 Build as we go
             </li>
             <li>
-                <a href="http://evil-aliens-2.appspot.com">evil-aliens-2.appspot.com</a>
+                Play! <a href="http://evil-aliens-2.appspot.com">evil-aliens-2.appspot.com</a>
             </li>
           </ul>
         </article>
         
         <article>
           <h3>
-            What's going on in there?
+            Break it down
+          </h3>
+          <ol>
+            <li>
+                Setup space: Canvas
+            </li>
+            <li>
+                Drawing the planet: Asset management, Drawing images, Translating coordinates
+            </li>
+            <li>
+                Aliens and movement: Game world, entities, and loop
+            </li>
+            <li>
+                Correct timing: In-game clocks
+            </li>
+            <li>
+                Aliens facing earth: Image rotation
+            </li>
+            <li>
+                Reducing work: Off-screen canvas
+            </li>
+            <li>
+                Turret and mouse tracking: Input handling
+            </li>
+        </article>
+        
+        <article>
+            <h3>Break it down (cont.)</h3>
+            <ol start="8">
+                <li>
+                    Shooting: Input handling, removing entities
+                </li>
+                <li>
+                    Lasers explode: Animations, sprite sheets, image scaling
+                </li>
+                <li>
+                    Ka-Boom!: Sounds
+                </li>
+                <li>
+                    Blow up Aliens: Collision detection
+                </li>
+                <li>
+                    Score keeping: Drawing text
+                </li>
+                <li>
+                    Monitoring performance: Stats and framerates
+                </li>
+                <li>
+                    Offline: Application cache
+                </li>
+            </ol>
+        </article>
+        
+        <article>
+          <h3>
+            Phase 1 Objectives
           </h3>
           <ul>
+              <li>
+                Bootstrap
+              </li>
             <li>
-                Asset management
+                Create a space to draw on
             </li>
             <li>
-                Drawing and rotating images
-            </li>
-            <li>
-                Game world, entities, and loop
-            </li>
-            <li>
-                Input handling
-            </li>
-            <li>
-                Timing and animations
-            </li>
-            <li>
-                Animations
-            </li>
-            <li>
-                Sounds
-            </li>
-            <li>
-                Collision detection
-            </li>
-            <li>
-                Offline
+                Emulate the void of space
             </li>
           </ul>
         </article>
         
         <article>
-          <h3>
-            Phase 01: Game surface
-          </h3>
+            <h3>
+                Phase 1 Technologies
+            </h3>
           <ul>
             <li>
                 HTML5 Canvas
@@ -231,7 +268,7 @@
         
         <article>
           <h3>
-            Phase 01 Code: Game surface
+            Phase 1 Code: Canvas
           </h3>
           <section>
               <pre>
@@ -249,28 +286,57 @@
         </article>
         
         <article class='fill'>
-          <iframe src='http://evil-aliens-2.appspot.com/phase01/index.html'></iframe>
+            <h3>Phase 1: Launch It</h3>
+            <p>
+                <a href="http://evil-aliens-2.appspot.com/phase01/index.html" target="_new">http://evil-aliens-2.appspot.com/phase01/index.html</a>
+            </p>
+            <ul>
+                <li>
+                    Bootstrap HTML
+                </li>
+                <li>
+                    Empty, black canvas
+                </li>
+            </ul>
         </article>
         
         <article>
           <h3>
-            Phase 02: Asset Management
+            Phase 2 Objectives
           </h3>
           <ul>
-            <li>
-                Problem: images load asynchronously
-            </li>
-            <li>
-                Queue up downloads
-            </li>
-            <li>
-                Start when everything loaded
-            </li>
+              <li>
+                Draw images to the canvas
+              </li>
+              <li>
+                Load all images before game starts
+              </li>
+              <li>
+                Draw planet in center of canvas
+              </li>
+              <li>
+                Wait for asynchronous loading
+              </li>
+        </article>
+        
+        <article>
+            <h3>Phase 2 Technologies</h3>
+            <ul>
+                <li>
+                    Asset Manager
+                </li>
+                <li>
+                    Canvas <code>drawImage(img,x,y)</code>
+                </li>
+                <li>
+                    Canvas <code>translate(x,y)</code>
+                </li>
+            </ul>
         </article>
         
         <article>
             <h3>
-                Phase 02 Code: Asset Management
+                Phase 2 Code: Asset Manager
           </h3>
           <section>
               <pre>
@@ -293,15 +359,11 @@ AssetManager.prototype.isDone = function() {
         
         <article class='smaller'>
             <h3>
-                Phase 02 Code: Asset Management (cont.)
+                Phase 2 Code: Asset Manager (cont.)
           </h3>
           <section>
               <pre>
 AssetManager.prototype.downloadAll = function(callback) {
-  if (this.downloadQueue.length === 0 &amp;&amp; this.soundsQueue.length === 0) {
-      callback();
-  }
-
   for (var i = 0; i &lt; this.downloadQueue.length; i++) {
       var path = this.downloadQueue[i];
       var img = new Image();
@@ -325,44 +387,27 @@ AssetManager.prototype.downloadAll = function(callback) {
 }</pre>
             </section>
         </article>
-        
-        <article>
-          <h3>
-            Phase 02.1: Drawing Images
-          </h3>
-          <ul>
-            <li>
-                Center the coordinate system via <code>ctx.translate(x,y)</code>
-            </li>
-            <li>
-                Draw image centered
-            </li>
-            <li>
-                Push/pop changes with <code>save()</code> and <code>restore()</code>
-            </li>
-        </article>
 
         <article>
             <h3>
-                Phase 02.1 Code: Drawing Images
-          </h3>
+                Phase 2 Code: Drawing images, translating coordinates
+            </h3>
           <section>
               <pre>
-var canvas = document.getElementById('surface');
-var ctx = canvas.getContext('2d');
-var ASSET_MANAGER = new AssetManager();
-
 ASSET_MANAGER.queueDownload('img/earth.png');
 
 ASSET_MANAGER.downloadAll(function() {
   var x = 0, y = 0;
   var sprite = ASSET_MANAGER.getAsset('img/earth.png');
-  ctx.save();
+  
+  ctx.save(); // push ctx state
+  
   // move coordinate system to center of canvas
   ctx.translate(canvas.width/2, canvas.height/2);
   // draw image centered
   ctx.drawImage(sprite, x - sprite.width/2, y - sprite.height/2);
-  ctx.restore();
+  
+  ctx.restore(); // pop ctx state
 });</pre>
             </section>
         </article>
@@ -376,8 +421,21 @@ ASSET_MANAGER.downloadAll(function() {
           </p>
         </article>
         
-        <article class='fill'>
-          <iframe src='http://evil-aliens-2.appspot.com/phase02/index.html'></iframe>
+        <article>
+            <h3>
+                Phase 2: Launch it!
+            </h3>
+            <p>
+                <a href="http://evil-aliens-2.appspot.com/phase02/index.html" target="_new">http://evil-aliens-2.appspot.com/phase02/index.html</a>
+            </p>
+            <ul>
+                <li>
+                    Waits for image to download
+                </li>
+                <li>
+                    Draws image in center of canvas
+                </li>
+            </ul>
         </article>
       
       <article>
