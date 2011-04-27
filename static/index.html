@@ -200,6 +200,173 @@
             </li>
           </ul>
         </article>
+        
+        <article>
+          <h3>
+            Phase 01: Game surface
+          </h3>
+          <ul>
+            <li>
+                HTML5 Canvas
+            </li>
+            <li>
+                2D surface
+            </li>
+            <li>
+                Immediate mode
+            </li>
+            <li>
+                Primitives like lines, images, arcs
+            </li>
+            <li>
+                Hardware accelerated
+            </li>
+            <li>
+                Other options?
+            </li>
+        </article>
+        
+        <article>
+          <h3>
+            Phase 01 Code: Game surface
+          </h3>
+          <section>
+              <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;meta charset=&quot;utf-8&quot;&gt;
+      &lt;title&gt;Evil Aliens 2&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;canvas id=&quot;surface&quot; width=&quot;1024&quot; height=&quot;768&quot;&gt;&lt;/canvas&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+        </section>
+        </article>
+        
+        <article class='fill'>
+          <iframe src='http://evil-aliens-2.appspot.com/phase01/index.html'></iframe>
+        </article>
+        
+        <article>
+          <h3>
+            Phase 02: Asset Management
+          </h3>
+          <ul>
+            <li>
+                Problem: images load asynchronously
+            </li>
+            <li>
+                Queue up downloads
+            </li>
+            <li>
+                Start when everything loaded
+            </li>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 02 Code: Asset Management
+          </h3>
+          <section>
+              <pre>
+function AssetManager() {
+  this.successCount = 0;
+  this.errorCount = 0;
+  this.cache = {};
+  this.downloadQueue = [];
+}
+
+AssetManager.prototype.queueDownload = function(path) {
+  this.downloadQueue.push(path);
+}
+
+AssetManager.prototype.isDone = function() {
+  return (this.downloadQueue.length == this.successCount + this.errorCount);
+}</pre>
+            </section>
+        </article>
+        
+        <article class='smaller'>
+            <h3>
+                Phase 02 Code: Asset Management (cont.)
+          </h3>
+          <section>
+              <pre>
+AssetManager.prototype.downloadAll = function(callback) {
+  if (this.downloadQueue.length === 0 &amp;&amp; this.soundsQueue.length === 0) {
+      callback();
+  }
+
+  for (var i = 0; i &lt; this.downloadQueue.length; i++) {
+      var path = this.downloadQueue[i];
+      var img = new Image();
+      var that = this;
+      img.addEventListener(&quot;load&quot;, function() {
+          console.log(this.src + ' is loaded');
+          that.successCount += 1;
+          if (that.isDone()) {
+              callback();
+          }
+      });
+      img.addEventListener(&quot;error&quot;, function() {
+          that.errorCount += 1;
+          if (that.isDone()) {
+              callback();
+          }
+      });
+      img.src = path;
+      this.cache[path] = img;
+  }
+}</pre>
+            </section>
+        </article>
+        
+        <article>
+          <h3>
+            Phase 02.1: Drawing Images
+          </h3>
+          <ul>
+            <li>
+                Center the coordinate system via <code>ctx.translate(x,y)</code>
+            </li>
+            <li>
+                Draw image centered
+            </li>
+            <li>
+                Push/pop changes with <code>save()</code> and <code>restore()</code>
+            </li>
+        </article>
+
+        <article>
+            <h3>
+                Phase 02.1 Code: Drawing Images
+          </h3>
+          <section>
+              <pre>
+var canvas = document.getElementById('surface');
+var ctx = canvas.getContext('2d');
+var ASSET_MANAGER = new AssetManager();
+
+ASSET_MANAGER.queueDownload('img/earth.png');
+
+ASSET_MANAGER.downloadAll(function() {
+  var x = 0, y = 0;
+  var sprite = ASSET_MANAGER.getAsset('img/earth.png');
+  ctx.save();
+  // move coordinate system to center of canvas
+  ctx.translate(canvas.width/2, canvas.height/2);
+  // draw image centered
+  ctx.drawImage(sprite, x - sprite.width/2, y - sprite.height/2);
+  ctx.restore();
+});</pre>
+            </section>
+        </article>
+        
+        <article class='fill'>
+          <iframe src='http://evil-aliens-2.appspot.com/phase02/index.html'></iframe>
+        </article>
       
       <article>
         <p>
