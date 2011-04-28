@@ -242,7 +242,7 @@
         
         <article>
             <h3>
-                Phase 1 Technologies
+                Phase 1: Technologies and Techniques
             </h3>
           <ul>
             <li>
@@ -322,7 +322,7 @@
         </article>
         
         <article>
-            <h3>Phase 2 Technologies</h3>
+            <h3>Phase 2: Technologies and Techniques</h3>
             <ul>
                 <li>
                     Asset Manager
@@ -457,7 +457,7 @@ ASSET_MANAGER.downloadAll(function() {
         </article>
         
         <article>
-            <h3>Phase 3 Technologies</h3>
+            <h3>Phase 3: Technologies and Techniques</h3>
             <ul>
                 <li>
                     Game engine and Entities
@@ -628,7 +628,7 @@ Entity.prototype.drawSpriteCentered = function(ctx) {
         
         <article>
           <h3>
-            Phase 4 Technologies
+            Phase 4: Technologies and Techniques
           </h3>
           <ul>
               <li>
@@ -736,7 +736,7 @@ Alien.prototype.update = function() {
         
         <article>
           <h3>
-            Phase 5 Technologies
+            Phase 5: Technologies and Techniques
           </h3>
           <ul>
               <li>
@@ -873,7 +873,7 @@ ctx.drawImage(image, -image.width/2, -image.height/2);
         
         <article>
             <h3>
-                Phase 6: Technologies
+                Phase 6: Technologies and Techniques
             </h3>
             <ul>
                 <li>
@@ -949,6 +949,128 @@ Alien.prototype.draw = function(ctx) {
             <ul>
                 <li>
                     Optimize drawing of Aliens
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 7: Objectives
+            </h3>
+            <ul>
+                <li>
+                    Display the turret
+                </li>
+                <li>
+                    Turret tracks the mouse
+                </li>
+                <li>
+                    Record mouse movement and clicks
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 6: Technologies and Techniques
+            </h3>
+            <ul>
+                <li>
+                    Listen for <code>click</code> and <code>mousemove</code> events
+                </li>
+                <li>
+                    Convert mouse coordinates to inside of canvas
+                </li>
+                <li>
+                    Store for processing, handle inside of <code>update()</code>
+                </li>
+                <li>
+                    Clear after every game loop
+                </li>
+            </ul>
+        </article>
+        
+        <article class="smaller">
+            <h3>
+                Phase 7 Code: Event handlers
+            </h3>
+          <section>
+              <pre>
+GameEngine.prototype.startInput = function() {
+  var getXandY = function(e) {
+    <span class="important">var x =  e.clientX - that.ctx.canvas.getBoundingClientRect().left;</span>
+    <span class="important">x -= (that.ctx.canvas.width/2);</span> // 0,0 is in middle of canvas
+    <span class="important">var y = e.clientY - that.ctx.canvas.getBoundingClientRect().top -</span>
+    <span class="important">y -= (that.ctx.canvas.height/2);</span>
+    return {x: x, y: y};
+  }
+
+  var that = this;
+
+  this.ctx.canvas.addEventListener(&quot;click&quot;, function(e) {
+      that.click = getXandY(e);
+      e.stopPropagation();
+      e.preventDefault();
+  });
+
+  this.ctx.canvas.addEventListener(&quot;mousemove&quot;, function(e) {
+      that.mouse = getXandY(e);
+  });
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 7 Code: Rotate sentry turret based on mouse position
+            </h3>
+          <section>
+              <pre>
+Sentry.prototype.update = function() {
+  if (this.game.mouse) {
+    <span class="important">this.angle = Math.atan2(this.game.mouse.y, this.game.mouse.x);</span>
+    if (this.angle &lt; 0) {
+      this.angle += Math.PI * 2;
+    }
+    this.x = (Math.cos(this.angle) * this.distanceFromEarthCenter);
+    this.y = (Math.sin(this.angle) * this.distanceFromEarthCenter);
+  }
+  Entity.prototype.update.call(this);
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 7 Code: Clearing the click in the loop
+            </h3>
+          <section>
+              <pre>
+GameEngine.prototype.loop = function() {
+  this.clockTick = this.timer.tick();
+  this.update();
+  this.draw();
+  <span class="important">this.click = null;</span>
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 7: Launch it!
+            </h3>
+            <p>
+                <a href="http://evil-aliens-2.appspot.com/phase07/index.html" target="_new">http://evil-aliens-2.appspot.com/phase07/index.html</a>
+            </p>
+            <ul>
+                <li>
+                    Capture mouse movement and clicks
+                </li>
+                <li>
+                    Draw turrent, follow mouse
                 </li>
             </ul>
         </article>
