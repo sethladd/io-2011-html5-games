@@ -69,10 +69,9 @@ body {
 
 .slides > article:not(.nobackground):not(.biglogo) {
   background: url(images/colorbar.png) 0 600px repeat-x,
-              url(images/html5-logo.png) 20px 625px no-repeat,
-              url(images/googleio-logo.png) 640px 625px no-repeat;
+              url(images/html5-logo-65x65.png) 20px 620px no-repeat,
+              url(images/googleio-logo-small.png) 610px 615px no-repeat;
 
-  background-size: 25%, 7%;  
 
   background-color: white;  
 }
