@@ -1074,6 +1074,127 @@ GameEngine.prototype.loop = function() {
                 </li>
             </ul>
         </article>
+        
+        <article>
+            <h3>
+                Phase 8: Objectives
+            </h3>
+            <ul>
+                <li>
+                    Shoot lasers!
+                </li>
+                <li>
+                    Remove entities from the world when no longer needed
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 8: Technologies and Techniques
+            </h3>
+            <ul>
+                <li>
+                    Handle click to shoot
+                </li>
+                <li>
+                    Add a <code>removeFromWorld</code> bit to Entities
+                </li>
+                <li>
+                    Check in game <code>update()</code>
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 8 Code: Blast 'em!
+            </h3>
+          <section>
+              <pre>
+Sentry.prototype.update = function() {
+  ...
+  if (this.game.click) {
+      this.shoot();
+  }
+  ...
+}
+</pre>
+            </section>
+            
+            <section>
+              <pre>
+Sentry.prototype.shoot = function() {
+  var bullet = new Bullet(this.game, this.x, this.y,
+                          this.angle, this.game.click);
+  this.game.addEntity(bullet);
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 8 Code: Remove laser bullets when leave the canvas
+            </h3>
+          <section>
+              <pre>
+Bullet.prototype.update = function() {
+  <span class="important">if (this.outsideScreen()) {</span>
+    <span class="important">this.removeFromWorld = true;</span>
+  } else {
+    this.x = this.radial_distance * Math.cos(this.angle);
+    this.y = this.radial_distance * Math.sin(this.angle);
+    this.radial_distance += this.speed * this.game.clockTick;
+  }
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 8 Code: Clear entities from game world
+            </h3>
+          <section>
+              <pre>
+GameEngine.prototype.update = function() {
+  var entitiesCount = this.entities.length;
+
+  for (var i = 0; i &lt; entitiesCount; i++) {
+    var entity = this.entities[i];
+
+    if (!entity.removeFromWorld) {
+      entity.update();
+    }
+  }
+
+  for (var i = this.entities.length-1; i >= 0; --i) {
+    if (this.entities[i].removeFromWorld) {
+      this.entities.splice(i, 1);
+    }
+  }
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 8: Launch it!
+            </h3>
+            <p>
+                <a href="http://evil-aliens-2.appspot.com/phase08/index.html" target="_new">http://evil-aliens-2.appspot.com/phase08/index.html</a>
+            </p>
+            <ul>
+                <li>
+                    Shoot lasers on click
+                </li>
+                <li>
+                    Remove entities from world
+                </li>
+            </ul>
+        </article>
       
       <article>
         <p>
