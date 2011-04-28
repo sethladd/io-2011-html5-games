@@ -1596,6 +1596,110 @@ EvilAliens.prototype.drawScore = function() {
                 <img class="centered" src="images/screenshot-phase-12.png">
             </p>
         </article>
+        
+        <article>
+            <h3>
+                Phase 13: Objectives
+            </h3>
+            <ul>
+                <li>
+                    Measure performance
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 13: Technologies and Techniques
+            </h3>
+            <ul>
+                <li>
+                    Mr. Doob's <a href="https://github.com/mrdoob/stats.js">stats.js</a>
+                </li>
+                <li>
+                    Chrome's FPS Counter
+                </li>
+                <li>
+                    <a href="http://blog.chromium.org/2009/06/developer-tools-for-google-chrome.html">Developer Tools' Profiler</a>
+                </li>
+                <li>
+                    Mozilla's <a href="https://developer.mozilla.org/en/DOM/window.mozPaintCount"><code>mozPaintCount</code></a>
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 13: stats.js
+            </h3>
+            <p>
+                <img class="centered" src="images/screenshot-phase-13-stats.png">
+            </p>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 13 Code: stats.js
+            </h3>
+          <section>
+              <pre>
+function GameEngine() {
+  ...
+  this.stats = new Stats();
+}
+
+GameEngine.prototype.init = function(ctx) {
+  ...
+  document.body.appendChild(this.stats.domElement);
+}
+
+GameEngine.prototype.loop = function() {
+  ...
+  this.stats.update();
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 13: Chrome FPS Counter
+            </h3>
+            <ul>
+                <li>Enable in about:flags</li>
+                <li>Only works with hardware acceleration</li>
+                <li>Shows <strong>true</strong> FPS</li>
+            </ul>
+            <p>
+                <img class="centered" src="images/screenshot-phase-13-fps-counter.png">
+            </p>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 13: Developer Tools' Profiler
+            </h3>
+            <p>
+                <img class="centered" src="images/screenshot-phase-13-profile.png">
+            </p>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 13: Launch it!
+            </h3>
+            <p>
+                <a href="http://evil-aliens-2.appspot.com/phase13/index.html" target="_new">http://evil-aliens-2.appspot.com/phase13/index.html</a>
+            </p>
+            <ul>
+                <li>
+                    Displaying small stats window
+                </li>
+            </ul>
+            <p>
+                <img class="centered" src="images/screenshot-phase-13-stats.png">
+            </p>
+        </article>
       
       <article>
         <p>
