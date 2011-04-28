@@ -1526,6 +1526,76 @@ Entity.prototype.draw = function(ctx) {
                 </li>
             </ul>
         </article>
+        
+        <article>
+            <h3>
+                Phase 12: Objectives
+            </h3>
+            <ul>
+                <li>
+                    Display score
+                </li>
+                <li>
+                    Display lives left
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 12: Technologies and Techniques
+            </h3>
+            <ul>
+                <li>
+                    Canvas <code>drawText()</code>
+                </li>
+                <li>
+                    Advanced: <a href="http://impactjs.com/font-tool/">Sprite sheet based fonts</a> from <a href="http://impactjs.com">Impact</a>
+                </li>
+                <li>
+                    <a href="http://simonsarris.com/blog/322-canvas-drawtext-considered-harmful">Consider off-screen canvas for optimization</a>
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 12 Code: <code>drawText()</code>
+            </h3>
+          <section>
+              <pre>
+EvilAliens.prototype.draw = function() {
+  GameEngine.prototype.draw.call(this, function(game) {
+    <span class="important">game.drawScore();</span>
+    game.drawLives();
+  });
+}
+                  
+EvilAliens.prototype.drawScore = function() {
+  this.ctx.fillStyle = &quot;red&quot;;
+  this.ctx.font = &quot;bold 2em Arial&quot;;
+  this.ctx.<span class="important">fillText</span>(&quot;Score: &quot; + this.score, x, y);
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 12: Launch it!
+            </h3>
+            <p>
+                <a href="http://evil-aliens-2.appspot.com/phase12/index.html" target="_new">http://evil-aliens-2.appspot.com/phase12/index.html</a>
+            </p>
+            <ul>
+                <li>
+                    Displaying score, lives remaining
+                </li>
+            </ul>
+            <p>
+                <img class="centered" src="images/screenshot-phase-12.png">
+            </p>
+        </article>
       
       <article>
         <p>
