@@ -1317,6 +1317,115 @@ BulletExplosion.prototype.draw = function(ctx) {
                 </li>
             </ul>
         </article>
+        
+        <article>
+            <h3>
+                Phase 10: Objectives
+            </h3>
+            <ul>
+                <li>
+                    Shooting laser bullets sounds
+                </li>
+                <li>
+                    Wire in sound support into Asset Manager
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 10: Technologies and Techniques
+            </h3>
+            <ul>
+                <li>
+                    HTML5 Audio not quite there for games. <a href="http://goo.gl/adIqK">Learn</a> <a href="http://goo.gl/WTuSF">more</a>.
+                </li>
+                <ul><li>
+                    Recent patches landed for Chrome (yay!)
+                </li></ul>
+                <li>
+                    Follow <a href="http://www.w3.org/2011/audio/">W3C's Audio working group</a>
+                </li>
+                <li>
+                    Back in real life, use <a href="http://www.schillmania.com/projects/soundmanager2/">Sound Manager 2</a>
+                </li>
+                <ul><li>
+                    Supports Flash and HTML5 Audio. Future proof code!
+                </li></ul>
+            </ul>
+        </article>
+        
+        <article class="smaller">
+            <h3>
+                Phase 10 Code: Add sounds to Asset Manager
+            </h3>
+          <section>
+              <pre>
+AssetManager.prototype.downloadSounds = function(callback) {
+  var that = this;
+  <span class="important">soundManager.onready</span>(function() {
+      // start download for each song
+  });
+}
+
+AssetManager.prototype.downloadSound = function(id, path, callback) {
+  var that = this;
+  this.cache[path] = soundManager.createSound({
+      id: id,
+      <span class="important">autoLoad: true</span>,
+      url: path,
+      onload: function() {
+          that.successCount += 1;
+          if (that.isDone()) {
+              callback();
+          }
+      }
+  });
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 10 Code: Play sounds
+            </h3>
+          <section>
+              <pre>
+Bullet.prototype.update = function() {
+  ...
+  } else if (this.explodesHere()) {
+      <span class="important">ASSET_MANAGER.getSound('audio/bullet_boom.mp3').play();</span>
+      this.game.addEntity(new BulletExplosion(this.game,
+                                              this.explodesAt.x,
+                                              this.explodesAt.y));
+      this.removeFromWorld = true;
+  } else {
+  ...
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 10: Launch it!
+            </h3>
+            <p>
+                <a href="http://evil-aliens-2.appspot.com/phase10/index.html" target="_new">http://evil-aliens-2.appspot.com/phase10/index.html</a>
+            </p>
+            <ul>
+                <li>
+                    Laser bullet sounds
+                </li>
+                <li>
+                    Asset Manager now waits for all sounds to load
+                </li>
+                <li>
+                    Sound Manager 2 w/ Flash, fallback to HTML5 audio
+                </li>
+            </ul>
+        </article>
       
       <article>
         <p>
