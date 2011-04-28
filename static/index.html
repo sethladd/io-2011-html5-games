@@ -548,23 +548,16 @@ window.requestAnimFrame = (function(){
             </p>
         </article>
         
-        <article class='smaller'>
+        <article>
             <h3>
                 Phase 3 Code: Alien
             </h3>
           <section>
               <pre>
-function Alien(game, radial_distance, angle) {
-  Entity.call(this, game);
-  // set properties
-}
-Alien.prototype = new Entity();
-Alien.prototype.constructor = Alien;
-
 Alien.prototype.update = function() {
   this.x = this.radial_distance * Math.cos(this.angle);
   this.y = this.radial_distance * Math.sin(this.angle);
-  <span class="important">this.radial_distance -= this.speed * this.game.deltaTime;</span>
+  this.radial_distance -= this.speed * this.game.deltaTime;
 
   Entity.prototype.update.call(this);
 }
