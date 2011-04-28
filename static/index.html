@@ -853,6 +853,105 @@ ctx.drawImage(image, -image.width/2, -image.height/2);
                 </li>
             </ul>
         </article>
+        
+        <article>
+            <h3>
+                Phase 6: Objectives
+            </h3>
+            <ul>
+                <li>
+                    Reduce work
+                </li>
+                <li>
+                    Save battery
+                </li>
+                <li>
+                    Cache rotated images
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 6: Technologies
+            </h3>
+            <ul>
+                <li>
+                    Off screen Canvas
+                </li>
+                <li>
+                    Canvases can be drawn onto other canvases
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 6 Code: Off screen canvas
+            </h3>
+          <section>
+              <pre>
+Entity.prototype.rotateAndCache = function(image) {
+  var offscreenCanvas = document.createElement('canvas');
+  var offscreenCtx = offscreenCanvas.getContext('2d');
+  
+  var size = Math.max(image.width, image.height);
+  offscreenCanvas.width = size;
+  offscreenCanvas.height = size;
+  
+  offscreenCtx.translate(size/2, size/2);
+  offscreenCtx.rotate(this.angle + Math.PI/2);
+  offscreenCtx.drawImage(image, -(image.width/2), -(image.height/2));
+  
+  return offscreenCanvas;
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 6 Code: Draw canvas into canvas
+            </h3>
+          <section>
+              <pre>
+function Alien(game, radial_distance, angle) {
+  ...
+  <span class="important">this.sprite = this.rotateAndCache</span>(ASSET_MANAGER.getAsset('img/alien.png'));
+  ...
+}
+
+Alien.prototype.draw = function(ctx) {
+  var x = this.x - this.sprite.width/2;
+  var y = this.y - this.sprite.height/2;
+  ctx.drawImage(<span class="important">this.sprite</span>, x, y);
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+          <h3>
+            Phase 6: Benefits of Caching
+          </h3>
+          <p>
+            <img class='centered' style='height: 464px' width="750" height="464" src='images/cached-image-rotation.jpg'>
+          </p>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 6: Launch it!
+            </h3>
+            <p>
+                <a href="http://evil-aliens-2.appspot.com/phase06/index.html" target="_new">http://evil-aliens-2.appspot.com/phase06/index.html</a>
+            </p>
+            <ul>
+                <li>
+                    Optimize drawing of Aliens
+                </li>
+            </ul>
+        </article>
       
       <article>
         <p>
