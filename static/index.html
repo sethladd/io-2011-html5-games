@@ -614,6 +614,111 @@ Entity.prototype.drawSpriteCentered = function(ctx) {
                 </li>
             </ul>
         </article>
+        
+        <article>
+          <h3>
+            Phase 4 Objectives
+          </h3>
+          <ul>
+              <li>
+                Fix the &quot;wormhole&quot; bug
+              </li>
+          </ul>
+        </article>
+        
+        <article>
+          <h3>
+            Phase 4 Technologies
+          </h3>
+          <ul>
+              <li>
+                In-game timer
+              </li>
+              <li>
+                Ignore wall clock
+              </li>
+              <li>
+                Clamp time deltas
+              </li>
+          </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 4 Code: Timer
+            </h3>
+          <section>
+              <pre>
+function Timer() {
+  this.gameTime = 0;
+  this.maxStep = 0.05;
+  this.wallLastTimestamp = 0;
+}
+
+Timer.prototype.tick = function() {
+  var wallCurrent = Date.now();
+  var wallDelta = (wallCurrent - this.wallLastTimestamp) / 1000;
+  this.wallLastTimestamp = wallCurrent;
+
+  <span class="important">var gameDelta = Math.min(wallDelta, this.maxStep);</span>
+  this.gameTime += gameDelta;
+  return gameDelta;
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 4 Code: Game loop using timer
+            </h3>
+          <section>
+              <pre>
+GameEngine.prototype.loop = function() {
+  <span class="important">this.clockTick = this.timer.tick();</span>
+  this.update();
+  this.draw();
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 4 Code: Alien velocity using ticks
+            </h3>
+          <section>
+              <pre>
+Alien.prototype.update = function() {
+  this.x = this.radial_distance * Math.cos(this.angle);
+  this.y = this.radial_distance * Math.sin(this.angle);
+  <span class="important">this.radial_distance -= this.speed * this.game.clockTick;</span>
+
+  Entity.prototype.update.call(this);
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 4: Launch it!
+            </h3>
+            <p>
+                <a href="http://evil-aliens-2.appspot.com/phase04/index.html" target="_new">http://evil-aliens-2.appspot.com/phase04/index.html</a>
+            </p>
+            <ul>
+                <li>
+                    No wormholes
+                </li>
+                <li>
+                    Timing now prepped for multi-player
+                </li>
+                <li>
+                    Repeatable, consistent
+                </li>
+            </ul>
+        </article>
       
       <article>
         <p>
