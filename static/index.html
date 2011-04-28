@@ -1195,6 +1195,128 @@ GameEngine.prototype.update = function() {
                 </li>
             </ul>
         </article>
+        
+        <article>
+            <h3>
+                Phase 9: Objectives
+            </h3>
+            <ul>
+                <li>
+                    Explosions!
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 9: Technologies and Techniques
+            </h3>
+            <ul>
+                <li>
+                    Replace entities when behavior changes
+                </li>
+                <li>
+                    Animation class
+                </li>
+                <li>
+                    Sprite sheets
+                </li>
+            </ul>
+            <p>
+                <img class="centered" src="images/sprite-sheet.png" width="750" height="281">
+            </p>
+        </article>
+        
+        <article class="smaller">
+            <h3>
+                Phase 9 Code: Animation
+            </h3>
+          <section>
+              <pre>
+function Animation(spriteSheet, frameWidth, frameDuration, loop) {
+  ...
+  this.totalTime = (this.spriteSheet.width / this.frameWidth) * this.frameDuration;
+}
+
+Animation.prototype.drawFrame = function(tick, ctx, x, y, scaleBy) {
+  ...
+  this.elapsedTime += tick;
+  ...
+  ctx.drawImage(this.spriteSheet,
+                this.currentFrame()*this.frameWidth, 0,  // source from sheet
+                this.frameWidth, this.frameHeight,
+                locX, locY,
+                this.frameWidth*scaleBy,
+                this.frameHeight*scaleBy);
+}
+
+Animation.prototype.currentFrame = function() {
+  return Math.floor(this.elapsedTime / this.frameDuration);
+}
+
+Animation.prototype.isDone = function() {
+  return (this.elapsedTime >= this.totalTime);
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 9 Code: Replace bullets with explosions
+            </h3>
+          <section>
+              <pre>
+Bullet.prototype.update = function() {
+  ...
+  } else if (this.explodesHere()) {
+    this.game.addEntity(new BulletExplosion(this.game,
+                                            this.explodesAt.x,
+                                            this.explodesAt.y));
+    this.removeFromWorld = true;
+  } else {
+  ...
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 9 Code: Animate explosions over time
+            </h3>
+          <section>
+              <pre>
+function BulletExplosion(game, x, y) {
+  ...
+  this.sprite = ASSET_MANAGER.getAsset('img/explosion.png');
+  this.animation = new Animation(this.sprite,
+                                 34, // frame width
+                                 0.05); // frame duration
+}
+
+BulletExplosion.prototype.draw = function(ctx) {
+  this.animation.drawFrame(<span class="important">this.game.clockTick</span>, ctx, this.x, this.y,
+                           this.scaleFactor());
+  ...
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 9: Launch it!
+            </h3>
+            <p>
+                <a href="http://evil-aliens-2.appspot.com/phase09/index.html" target="_new">http://evil-aliens-2.appspot.com/phase09/index.html</a>
+            </p>
+            <ul>
+                <li>
+                    Explosions via animations and sprite sheets
+                </li>
+            </ul>
+        </article>
       
       <article>
         <p>
