@@ -1426,6 +1426,106 @@ Bullet.prototype.update = function() {
                 </li>
             </ul>
         </article>
+        
+        <article>
+            <h3>
+                Phase 11: Objectives
+            </h3>
+            <ul>
+                <li>
+                    Blow up aliens (visuals and sounds)
+                </li>
+                <li>
+                    Add basic collision detection
+                </li>
+                <li>
+                    Aliens collide with Earth
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 11: Technologies and Techniques
+            </h3>
+            <ul>
+                <li>
+                    Give every object a radius
+                </li>
+                <li>
+                    Detect circle intersection
+                </li>
+            </ul>
+          <section>
+              <pre>
+var distance_squared = square(x1 - x2) + square(y1 - y2);
+var radii_squared = square(radius1 + radius2);
+return distance_squared &lt; radii_squared;  // true if intersect
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 11 Code: Bullets collide with Aliens
+            </h3>
+          <section>
+              <pre>
+BulletExplosion.prototype.update = function() {
+  ...
+  for (var i = 0; i &lt; this.game.entities.length; i++) {
+    var alien = this.game.entities[i];
+    if (alien instanceof Alien &amp;&amp; <span class="important">this.isCaughtInExplosion(alien)</span>) {
+      this.game.score += 10;
+      alien.explode();
+    }
+  }
+}
+</pre>
+            </section>
+            <p>
+                TODO: <a href="http://conkerjo.wordpress.com/2009/06/13/spatial-hashing-implementation-for-fast-2d-collisions/">Optimize with spatial hashing</a>.
+            </p>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 11 Code: Protip: Draw circles around objects for visual debugging
+            </h3>
+          <section>
+              <pre>
+Entity.prototype.draw = function(ctx) {
+  if (this.game.showOutlines &amp;&amp; this.radius) {
+    ctx.beginPath();
+    ctx.strokeStyle = &quot;green&quot;;
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
+    ctx.stroke();
+    ctx.closePath();
+  }
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 11: Launch it!
+            </h3>
+            <p>
+                <a href="http://evil-aliens-2.appspot.com/phase11/index.html" target="_new">http://evil-aliens-2.appspot.com/phase11/index.html</a>
+            </p>
+            <ul>
+                <li>
+                    Collision detection
+                </li>
+                <li>
+                    Aliens explode
+                </li>
+                <li>
+                    Aliens collide with Earth
+                </li>
+            </ul>
+        </article>
       
       <article>
         <p>
