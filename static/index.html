@@ -1700,6 +1700,92 @@ GameEngine.prototype.loop = function() {
                 <img class="centered" src="images/screenshot-phase-13-stats.png">
             </p>
         </article>
+        
+        <article>
+            <h3>
+                Phase 14: Objectives
+            </h3>
+            <ul>
+                <li>
+                    Offline play
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 14: Technologies and Techniques
+            </h3>
+            <ul>
+                <li>
+                    Application Cache - <a href="http://appcachefacts.info">appcachefacts.info</a>
+                </li>
+                <li>
+                    5MB limit, installable web apps get unlimited
+                </li>
+                <li>
+                    Manifest has to change to update assets on client
+                </li>
+                <li>
+                    Changes reflected on second load
+                </li>
+                <li>
+                    Reduce network and server load
+                </li>
+            </ul>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 14 Code: manifest.appcache
+            </h3>
+          <section>
+              <pre>
+CACHE MANIFEST
+# version 5
+
+CACHE:
+scripts/app.js
+scripts/soundmanager2-nodebug-jsmin.js
+scripts/stats.js
+swf/soundmanager2_flash9.swf
+audio/alien_boom.mp3
+img/alien-explosion.png
+img/alien.png
+...
+
+favicon.ico
+index.html
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 14 Code: index.html
+            </h3>
+          <section>
+              <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html <span class="important">manifest=&quot;manifest.appcache&quot;</span>&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;Evil Aliens 2&lt;/title&gt;
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Phase 14: Launch it!
+            </h3>
+            <p>
+                <a href="http://evil-aliens-2.appspot.com/phase14/index.html" target="_new">http://evil-aliens-2.appspot.com/phase14/index.html</a>
+            </p>
+            <p>
+                <img class="centered" alt="game works offline" src="images/screenshot-phase-14-offline.png">
+            </p>
+        </article>
       
       <article>
         <p>
