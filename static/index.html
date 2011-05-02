@@ -171,7 +171,7 @@
           <h3>
             Break it down
           </h3>
-          <ol>
+          <ul>
             <li>
                 Setup space: Canvas
             </li>
@@ -193,11 +193,12 @@
             <li>
                 Turret and mouse tracking: Input handling
             </li>
+          </ul>
         </article>
         
         <article>
             <h3>Break it down (cont.)</h3>
-            <ol start="8">
+            <ul
                 <li>
                     Shooting: Input handling, removing entities
                 </li>
@@ -214,22 +215,19 @@
                     Score keeping: Drawing text
                 </li>
                 <li>
-                    Monitoring performance: Stats and framerates
+                    Monitoring performance: Stats and frame rates
                 </li>
                 <li>
                     Offline: Application cache
                 </li>
-            </ol>
+            </ul>
         </article>
         
         <article>
           <h3>
-            Phase 1: Objectives
+            Objective: Bootstrap
           </h3>
           <ul>
-              <li>
-                Bootstrap
-              </li>
             <li>
                 Create a space to draw on
             </li>
@@ -241,7 +239,7 @@
         
         <article>
             <h3>
-                Phase 1: Technologies and Techniques
+                Bootstrap: Technologies and Techniques
             </h3>
           <ul>
             <li>
@@ -269,7 +267,7 @@
         
         <article>
           <h3>
-            Phase 1 Code: Canvas
+            Bootstrap Code: Canvas
           </h3>
           <section>
               <pre>
@@ -287,7 +285,7 @@
         </article>
         
         <article class='fill'>
-            <h3>Phase 1: Launch It</h3>
+            <h3>Bootstrap: Launch It!</h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase01/index.html" target="_new">http://evil-aliens-2.appspot.com/phase01/index.html</a>
             </p>
@@ -303,7 +301,7 @@
         
         <article>
           <h3>
-            Phase 2 Objectives
+            Objective: Rendering Images
           </h3>
           <ul>
               <li>
@@ -321,7 +319,7 @@
         </article>
         
         <article>
-            <h3>Phase 2: Technologies and Techniques</h3>
+            <h3>Rendering Images: Technologies and Techniques</h3>
             <ul>
                 <li>
                     Asset Manager
@@ -337,8 +335,8 @@
         
         <article>
             <h3>
-                Phase 2 Code: Asset Manager
-          </h3>
+                Asset Management Code
+            </h3>
           <section>
               <pre>
 function AssetManager() {
@@ -360,7 +358,7 @@ AssetManager.prototype.isDone = function() {
         
         <article class='smaller'>
             <h3>
-                Phase 2 Code: Asset Manager (cont.)
+                Asset Management Code (cont.)
           </h3>
           <section>
               <pre>
@@ -391,7 +389,7 @@ AssetManager.prototype.downloadAll = function(callback) {
 
         <article>
             <h3>
-                Phase 2 Code: Drawing images, translating coordinates
+                Rendering Images Code
             </h3>
           <section>
               <pre>
@@ -424,7 +422,7 @@ ASSET_MANAGER.downloadAll(function() {
         
         <article>
             <h3>
-                Phase 2: Launch it!
+                Rendering Images: Launch it!
             </h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase02/index.html" target="_new">http://evil-aliens-2.appspot.com/phase02/index.html</a>
@@ -441,7 +439,7 @@ ASSET_MANAGER.downloadAll(function() {
         
         <article>
           <h3>
-            Phase 3 Objectives
+            Objective: Flying Aliens
           </h3>
           <ul>
               <li>
@@ -456,7 +454,7 @@ ASSET_MANAGER.downloadAll(function() {
         </article>
         
         <article>
-            <h3>Phase 3: Technologies and Techniques</h3>
+            <h3>Flying Aliens: Technologies and Techniques</h3>
             <ul>
                 <li>
                     Game engine and Entities
@@ -475,7 +473,7 @@ ASSET_MANAGER.downloadAll(function() {
         
         <article class='smaller'>
             <h3>
-                Phase 3 Code: Game engine
+                Flying Aliens Code: Game engine
             </h3>
           <section>
               <pre>
@@ -507,7 +505,7 @@ GameEngine.prototype.loop = function() {
         
         <article>
             <h3>
-                Phase 3 Code: Game engine start
+                Flying Aliens Code: Game engine start
             </h3>
           <section>
               <pre>
@@ -526,7 +524,7 @@ GameEngine.prototype.start = function() {
         
         <article>
             <h3>
-                Phase 3 Code: <code>requestAnimationFrame()</code>
+                Flying Aliens Code: <code>requestAnimationFrame()</code>
             </h3>
           <section>
               <pre>
@@ -549,7 +547,7 @@ window.requestAnimFrame = (function(){
         
         <article>
             <h3>
-                Phase 3 Code: Alien
+                Flying Aliens Code: Alien
             </h3>
           <section>
               <pre>
@@ -571,7 +569,7 @@ Alien.prototype.draw = function(ctx) {
         
         <article>
             <h3>
-                Phase 3 Code: Draw images centered
+                Flying Aliens Code: Draw images centered
             </h3>
           <section>
               <pre>
@@ -586,7 +584,7 @@ Entity.prototype.drawSpriteCentered = function(ctx) {
         
         <article>
             <h3>
-                Phase 3: Launch it!
+                Flying Aliens: Launch it!
             </h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase03/index.html" target="_new">http://evil-aliens-2.appspot.com/phase03/index.html</a>
@@ -609,7 +607,7 @@ Entity.prototype.drawSpriteCentered = function(ctx) {
         
         <article>
           <h3>
-            Phase 4 Objectives
+            Objective: Fix Timing
           </h3>
           <ul>
               <li>
@@ -620,7 +618,7 @@ Entity.prototype.drawSpriteCentered = function(ctx) {
         
         <article>
           <h3>
-            Phase 4: Technologies and Techniques
+            Fix Timing: Technologies and Techniques
           </h3>
           <ul>
               <li>
@@ -637,7 +635,7 @@ Entity.prototype.drawSpriteCentered = function(ctx) {
         
         <article>
             <h3>
-                Phase 4 Code: Timer
+                Fix Timing Code: Timer
             </h3>
           <section>
               <pre>
@@ -662,7 +660,7 @@ Timer.prototype.tick = function() {
         
         <article>
             <h3>
-                Phase 4 Code: Game loop using timer
+                Fix Timing Code: Game loop using timer
             </h3>
           <section>
               <pre>
@@ -677,7 +675,7 @@ GameEngine.prototype.loop = function() {
         
         <article>
             <h3>
-                Phase 4 Code: Alien velocity using ticks
+                Fix Timing Code: Alien velocity using ticks
             </h3>
           <section>
               <pre>
@@ -694,7 +692,7 @@ Alien.prototype.update = function() {
         
         <article>
             <h3>
-                Phase 4: Launch it!
+                Fixed Timing: Launch it!
             </h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase04/index.html" target="_new">http://evil-aliens-2.appspot.com/phase04/index.html</a>
@@ -714,7 +712,7 @@ Alien.prototype.update = function() {
         
         <article>
           <h3>
-            Phase 5 Objectives
+            Objective: Orient Alien Ships
           </h3>
           <ul>
               <li>
@@ -728,7 +726,7 @@ Alien.prototype.update = function() {
         
         <article>
           <h3>
-            Phase 5: Technologies and Techniques
+            Orient Alien Ships: Technologies and Techniques
           </h3>
           <ul>
               <li>
@@ -751,7 +749,7 @@ Alien.prototype.update = function() {
         
         <article>
             <h3>
-                Phase 5 Code: <code>translate()</code> and <code>rotate()</code>
+                Orient Alien Ships Code: <code>translate()</code> and <code>rotate()</code>
             </h3>
           <section>
               <pre>
@@ -769,7 +767,7 @@ Alien.prototype.draw = function(ctx) {
         </article>
         
         <article class="smaller">
-            <h3>Phase 5 Code: <code>rotate()</code> examples</h3>
+            <h3>Orient Alien Ships Code: <code>rotate()</code> examples</h3>
           <section>
               <pre style="border: 1px solid black">
 ctx.translate(c.width/2, c.height/2); // set 0,0 to center of canvas
@@ -834,7 +832,7 @@ ctx.drawImage(image, -image.width/2, -image.height/2);
         
         <article>
             <h3>
-                Phase 5: Launch it!
+                Orient Alien Ships: Launch it!
             </h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase05/index.html" target="_new">http://evil-aliens-2.appspot.com/phase05/index.html</a>
@@ -848,7 +846,7 @@ ctx.drawImage(image, -image.width/2, -image.height/2);
         
         <article>
             <h3>
-                Phase 6: Objectives
+                Objective: Optimize Canvas Code
             </h3>
             <ul>
                 <li>
@@ -865,7 +863,7 @@ ctx.drawImage(image, -image.width/2, -image.height/2);
         
         <article>
             <h3>
-                Phase 6: Technologies and Techniques
+                Optimize Canvas Code: Technologies and Techniques
             </h3>
             <ul>
                 <li>
@@ -879,7 +877,7 @@ ctx.drawImage(image, -image.width/2, -image.height/2);
         
         <article>
             <h3>
-                Phase 6 Code: Off screen canvas
+                Optimize Canvas Code Code: Off screen canvas
             </h3>
           <section>
               <pre>
@@ -903,7 +901,7 @@ Entity.prototype.rotateAndCache = function(image) {
         
         <article>
             <h3>
-                Phase 6 Code: Draw canvas into canvas
+                Optimize Canvas Code Code: Draw canvas into canvas
             </h3>
           <section>
               <pre>
@@ -924,7 +922,7 @@ Alien.prototype.draw = function(ctx) {
         
         <article>
           <h3>
-            Phase 6: Benefits of Caching
+            Optimize Canvas Code: Benefits of Caching
           </h3>
           <p>
             <img class='centered' style='height: 464px' width="750" height="464" src='images/cached-image-rotation.jpg'>
@@ -933,7 +931,7 @@ Alien.prototype.draw = function(ctx) {
         
         <article>
             <h3>
-                Phase 6: Launch it!
+                Optimize Canvas Code: Launch it!
             </h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase06/index.html" target="_new">http://evil-aliens-2.appspot.com/phase06/index.html</a>
@@ -947,7 +945,7 @@ Alien.prototype.draw = function(ctx) {
         
         <article>
             <h3>
-                Phase 7: Objectives
+                Objective: Turret and Tracking
             </h3>
             <ul>
                 <li>
@@ -964,7 +962,7 @@ Alien.prototype.draw = function(ctx) {
         
         <article>
             <h3>
-                Phase 6: Technologies and Techniques
+                Turret and Tracking: Technologies and Techniques
             </h3>
             <ul>
                 <li>
@@ -984,7 +982,7 @@ Alien.prototype.draw = function(ctx) {
         
         <article class="smaller">
             <h3>
-                Phase 7 Code: Event handlers
+                Turret and Tracking Code: Event handlers
             </h3>
           <section>
               <pre>
@@ -1015,7 +1013,7 @@ GameEngine.prototype.startInput = function() {
         
         <article>
             <h3>
-                Phase 7 Code: Rotate sentry turret based on mouse position
+                Turret and Tracking Code: Rotate sentry turret based on mouse position
             </h3>
           <section>
               <pre>
@@ -1036,7 +1034,7 @@ Sentry.prototype.update = function() {
         
         <article>
             <h3>
-                Phase 7 Code: Clearing the click in the loop
+                Turret and Tracking Code: Clearing the click in the loop
             </h3>
           <section>
               <pre>
@@ -1052,7 +1050,7 @@ GameEngine.prototype.loop = function() {
         
         <article>
             <h3>
-                Phase 7: Launch it!
+                Turret and Tracking: Launch it!
             </h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase07/index.html" target="_new">http://evil-aliens-2.appspot.com/phase07/index.html</a>
@@ -1069,7 +1067,7 @@ GameEngine.prototype.loop = function() {
         
         <article>
             <h3>
-                Phase 8: Objectives
+                Objective: Shooting Lasers
             </h3>
             <ul>
                 <li>
@@ -1083,7 +1081,7 @@ GameEngine.prototype.loop = function() {
         
         <article>
             <h3>
-                Phase 8: Technologies and Techniques
+                Shooting Lasers: Technologies and Techniques
             </h3>
             <ul>
                 <li>
@@ -1100,7 +1098,7 @@ GameEngine.prototype.loop = function() {
         
         <article>
             <h3>
-                Phase 8 Code: Blast 'em!
+                Shooting Lasers Code: Blast 'em!
             </h3>
           <section>
               <pre>
@@ -1127,7 +1125,7 @@ Sentry.prototype.shoot = function() {
         
         <article>
             <h3>
-                Phase 8 Code: Remove laser bullets when leave the canvas
+                Shooting Lasers Code: Remove laser bullets when leave the canvas
             </h3>
           <section>
               <pre>
@@ -1146,7 +1144,7 @@ Bullet.prototype.update = function() {
         
         <article>
             <h3>
-                Phase 8 Code: Clear entities from game world
+                Shooting Lasers Code: Clear entities from game world
             </h3>
           <section>
               <pre>
@@ -1173,7 +1171,7 @@ GameEngine.prototype.update = function() {
         
         <article>
             <h3>
-                Phase 8: Launch it!
+                Shooting Lasers: Launch it!
             </h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase08/index.html" target="_new">http://evil-aliens-2.appspot.com/phase08/index.html</a>
@@ -1190,18 +1188,21 @@ GameEngine.prototype.update = function() {
         
         <article>
             <h3>
-                Phase 9: Objectives
+                Objective: Explosions!
             </h3>
             <ul>
                 <li>
-                    Explosions!
+                    Sprite sheets
+                </li>
+                <li>
+                    Animations
                 </li>
             </ul>
         </article>
         
         <article>
             <h3>
-                Phase 9: Technologies and Techniques
+                Explosions: Technologies and Techniques
             </h3>
             <ul>
                 <li>
@@ -1221,7 +1222,7 @@ GameEngine.prototype.update = function() {
         
         <article class="smaller">
             <h3>
-                Phase 9 Code: Animation
+                Explosions Code: Animation
             </h3>
           <section>
               <pre>
@@ -1255,7 +1256,7 @@ Animation.prototype.isDone = function() {
         
         <article>
             <h3>
-                Phase 9 Code: Replace bullets with explosions
+                Explosions Code: Replace bullets with explosions
             </h3>
           <section>
               <pre>
@@ -1275,7 +1276,7 @@ Bullet.prototype.update = function() {
         
         <article>
             <h3>
-                Phase 9 Code: Animate explosions over time
+                Explosions Code: Animate explosions over time
             </h3>
           <section>
               <pre>
@@ -1298,7 +1299,7 @@ BulletExplosion.prototype.draw = function(ctx) {
         
         <article>
             <h3>
-                Phase 9: Launch it!
+                Explosions: Launch it!
             </h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase09/index.html" target="_new">http://evil-aliens-2.appspot.com/phase09/index.html</a>
@@ -1312,7 +1313,7 @@ BulletExplosion.prototype.draw = function(ctx) {
         
         <article>
             <h3>
-                Phase 10: Objectives
+                Objective: Sounds
             </h3>
             <ul>
                 <li>
@@ -1326,7 +1327,7 @@ BulletExplosion.prototype.draw = function(ctx) {
         
         <article>
             <h3>
-                Phase 10: Technologies and Techniques
+                Sounds: Technologies and Techniques
             </h3>
             <ul>
                 <li>
@@ -1349,7 +1350,7 @@ BulletExplosion.prototype.draw = function(ctx) {
         
         <article class="smaller">
             <h3>
-                Phase 10 Code: Add sounds to Asset Manager
+                Sounds Code: Add sounds to Asset Manager
             </h3>
           <section>
               <pre>
@@ -1380,7 +1381,7 @@ AssetManager.prototype.downloadSound = function(id, path, callback) {
         
         <article>
             <h3>
-                Phase 10 Code: Play sounds
+                Sounds Code: Play sounds
             </h3>
           <section>
               <pre>
@@ -1401,7 +1402,7 @@ Bullet.prototype.update = function() {
         
         <article>
             <h3>
-                Phase 10: Launch it!
+                Sounds: Launch it!
             </h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase10/index.html" target="_new">http://evil-aliens-2.appspot.com/phase10/index.html</a>
@@ -1421,7 +1422,7 @@ Bullet.prototype.update = function() {
         
         <article>
             <h3>
-                Phase 11: Objectives
+                Objective: Blow Up Alien Ships
             </h3>
             <ul>
                 <li>
@@ -1438,7 +1439,7 @@ Bullet.prototype.update = function() {
         
         <article>
             <h3>
-                Phase 11: Technologies and Techniques
+                Blow Up Alien Ships: Technologies and Techniques
             </h3>
             <ul>
                 <li>
@@ -1459,7 +1460,7 @@ return distance_squared &lt; radii_squared;  // true if intersect
         
         <article>
             <h3>
-                Phase 11 Code: Bullets collide with Aliens
+                Blow Up Alien Ships Code: Bullets collide with Aliens
             </h3>
           <section>
               <pre>
@@ -1482,7 +1483,7 @@ BulletExplosion.prototype.update = function() {
         
         <article>
             <h3>
-                Phase 11 Code: Protip: Draw circles around objects for visual debugging
+                Blow Up Alien Ships Code: Protip: Draw circles around objects for visual debugging
             </h3>
           <section>
               <pre>
@@ -1501,7 +1502,7 @@ Entity.prototype.draw = function(ctx) {
         
         <article>
             <h3>
-                Phase 11: Launch it!
+                Blow Up Alien Ships: Launch it!
             </h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase11/index.html" target="_new">http://evil-aliens-2.appspot.com/phase11/index.html</a>
@@ -1521,7 +1522,7 @@ Entity.prototype.draw = function(ctx) {
         
         <article>
             <h3>
-                Phase 12: Objectives
+                Objective: Display Game Stats
             </h3>
             <ul>
                 <li>
@@ -1535,7 +1536,7 @@ Entity.prototype.draw = function(ctx) {
         
         <article>
             <h3>
-                Phase 12: Technologies and Techniques
+                Display Game Stats: Technologies and Techniques
             </h3>
             <ul>
                 <li>
@@ -1552,7 +1553,7 @@ Entity.prototype.draw = function(ctx) {
         
         <article>
             <h3>
-                Phase 12 Code: <code>drawText()</code>
+                Display Game Stats Code: <code>drawText()</code>
             </h3>
           <section>
               <pre>
@@ -1574,7 +1575,7 @@ EvilAliens.prototype.drawScore = function() {
         
         <article>
             <h3>
-                Phase 12: Launch it!
+                Display Game Stats: Launch it!
             </h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase12/index.html" target="_new">http://evil-aliens-2.appspot.com/phase12/index.html</a>
@@ -1591,18 +1592,21 @@ EvilAliens.prototype.drawScore = function() {
         
         <article>
             <h3>
-                Phase 13: Objectives
+                Objective: Measure Performance
             </h3>
             <ul>
                 <li>
-                    Measure performance
+                    FPS
+                </li>
+                <li>
+                    JavaScript profiling
                 </li>
             </ul>
         </article>
         
         <article>
             <h3>
-                Phase 13: Technologies and Techniques
+                Measure Performance: Technologies and Techniques
             </h3>
             <ul>
                 <li>
@@ -1622,7 +1626,7 @@ EvilAliens.prototype.drawScore = function() {
         
         <article>
             <h3>
-                Phase 13: stats.js
+                Measure Performance: stats.js
             </h3>
             <p>
                 <img class="centered" src="images/screenshot-phase-13-stats.png">
@@ -1631,7 +1635,7 @@ EvilAliens.prototype.drawScore = function() {
         
         <article>
             <h3>
-                Phase 13 Code: stats.js
+                Measure Performance Code: stats.js
             </h3>
           <section>
               <pre>
@@ -1655,7 +1659,7 @@ GameEngine.prototype.loop = function() {
         
         <article>
             <h3>
-                Phase 13: Chrome FPS Counter
+                Measure Performance: Chrome FPS Counter
             </h3>
             <ul>
                 <li>Enable in about:flags</li>
@@ -1669,7 +1673,7 @@ GameEngine.prototype.loop = function() {
         
         <article>
             <h3>
-                Phase 13: Developer Tools' Profiler
+                Measure Performance: Developer Tools' Profiler
             </h3>
             <p>
                 <img class="centered" src="images/screenshot-phase-13-profile.png">
@@ -1678,7 +1682,7 @@ GameEngine.prototype.loop = function() {
         
         <article>
             <h3>
-                Phase 13: Launch it!
+                Measure Performance: Launch it!
             </h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase13/index.html" target="_new">http://evil-aliens-2.appspot.com/phase13/index.html</a>
@@ -1695,18 +1699,24 @@ GameEngine.prototype.loop = function() {
         
         <article>
             <h3>
-                Phase 14: Objectives
+                Objective: Offline Play
             </h3>
             <ul>
                 <li>
-                    Offline play
+                    Transient network connectivity
+                </li>
+                <li>
+                    No network
+                </li>
+                <li>
+                    Save bandwidth
                 </li>
             </ul>
         </article>
         
         <article>
             <h3>
-                Phase 14: Technologies and Techniques
+                Offline Play: Technologies and Techniques
             </h3>
             <ul>
                 <li>
@@ -1729,7 +1739,7 @@ GameEngine.prototype.loop = function() {
         
         <article>
             <h3>
-                Phase 14 Code: manifest.appcache
+                Offline Play Code: manifest.appcache
             </h3>
           <section>
               <pre>
@@ -1754,7 +1764,7 @@ index.html
         
         <article>
             <h3>
-                Phase 14 Code: index.html
+                Offline Play Code: index.html
             </h3>
           <section>
               <pre>
@@ -1769,7 +1779,7 @@ index.html
         
         <article>
             <h3>
-                Phase 14: Launch it!
+                Offline Play: Launch it!
             </h3>
             <p>
                 <a href="http://evil-aliens-2.appspot.com/phase14/index.html" target="_new">http://evil-aliens-2.appspot.com/phase14/index.html</a>
