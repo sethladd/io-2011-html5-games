@@ -769,29 +769,32 @@ Alien.prototype.draw = function(ctx) {
         <article class="smaller">
             <h3>Orient Alien Ships Code: <code>rotate()</code> examples</h3>
           <section>
-              <pre style="border: 1px solid black">
+              <pre style="background:#F6CECE">
+// Step One
 ctx.translate(c.width/2, c.height/2); // set 0,0 to center of canvas
 ctx.drawImage(image, 0, 0);
 </pre>
             </section>
           <section>
-              <pre style="border: 1px solid red">
+              <pre style="background: #F2F5A9">
+// Step Two
 ctx.translate(c.width/2, c.height/2); // set 0,0 to center of canvas
 ctx.rotate(Math.PI/4); // 45 degrees
 ctx.drawImage(image, 0, 0);
 </pre>
             </section>
           <section>
-              <pre style="border: 1px solid blue">
+              <pre style="background: #D0F5A9">
+// Step Three
 ctx.translate(c.width/2, c.height/2);
 ctx.rotate(Math.PI/4); // 45 degrees
 ctx.drawImage(image, -image.width/2, -image.height/2);
 </pre>
             </section>
             <section>
-                <canvas id="phase5-rotate-0" width="100" height="100" style="border: 2px solid black"></canvas>
-                <canvas id="phase5-rotate-1" width="100" height="100" style="border: 2px solid red"></canvas>
-                <canvas id="phase5-rotate-2" width="100" height="100" style="border: 2px solid blue"></canvas>
+                <canvas id="phase5-rotate-0" width="100" height="100" style="background: #F6CECE; border: 2px solid black"></canvas>
+                <canvas id="phase5-rotate-1" width="100" height="100" style="background: #F2F5A9; border: 2px solid black"></canvas>
+                <canvas id="phase5-rotate-2" width="100" height="100" style="background: #D0F5A9; border: 2px solid black"></canvas>
             </section>
             <script>
             (function() {
