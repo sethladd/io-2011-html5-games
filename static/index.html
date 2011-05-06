@@ -28,7 +28,7 @@
         background-color: yellow;
     }
     
-    .slides > article::before {
+    .slides > article:not(.fill)::before {
       content: '';
       display: block;
       width: 100px;
@@ -37,6 +37,11 @@
       left: 0;
       bottom: 0;
       background: url(images/html5-logo-65x65.png) 30px 20px no-repeat;
+    }
+    
+    .photo-credit {
+        margin-top: 600px;
+        font-size: 15px;
     }
   </style>
 
@@ -62,10 +67,6 @@
           Seth Ladd
           <br>
           May 10, 2011
-          <br>
-          Feedback: <a href="http://j.mp/rategametalk">http://j.mp/rategametalk</a>
-          <br>
-          <a href="https://twitter.com/#!/search/%23io2011">#io2011</a> <a href="https://twitter.com/#!/search/%23chrome">#chrome</a>
         </p>
       </article>
       
@@ -83,14 +84,23 @@
             Chat me up: <a href="http://twitter.com/sethladd">@sethladd</a> or <a href="http://blog.sethladd.com">blog.sethladd.com</a>
         </p>
         <p>
+            Google Moderator: <a href="http://j.mp/games-qa">http://j.mp/games-qa</a>
+        </p>
+        <p>
+            Tweet it up: <a href="https://twitter.com/#!/search/%23io2011">#io2011</a> <a href="https://twitter.com/#!/search/%23chrome">#chrome</a>
+        </p>
+        <p>
             Feedback: <a href="http://j.mp/rategametalk">http://j.mp/rategametalk</a>
         </p>
       </article>
       
-      <article>
-          <h2>
-            1993, D&amp;D, Mountain Dew
-          </h2>
+      <article class='fill'>
+          <p>
+            <img src='images/d_and_d_crew.jpg'>
+          </p>
+          <p class="photo-credit">
+              <a href="http://www.flickr.com/photos/riggzy/4924270938/">http://www.flickr.com/photos/riggzy/4924270938/</a>
+          </p>
       </article>
       
       <article>
