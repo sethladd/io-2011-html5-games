@@ -14,7 +14,7 @@
     <meta charset='utf-8' />
     
     <title>Google I/O 2011 - Super Browser 2 Turbo HD Remix : Intro to HTML5 Game Development by Seth Ladd</title>
-    <script src='slides.js'></script>
+    <script src='http://io-2011-slides.googlecode.com/svn/trunk/slides.js'></script>
   </head>
   
   <style>
@@ -23,6 +23,17 @@
     
     pre > .important {
         background-color: yellow;
+    }
+    
+    .slides > article::before {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background: url(images/html5-logo-65x65.png) 30px 20px no-repeat;
     }
   </style>
 
