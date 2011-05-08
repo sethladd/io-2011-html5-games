@@ -372,7 +372,7 @@ AssetManager.prototype.isDone = function() {
             </section>
         </article>
         
-        <article class='smaller'>
+        <article>
             <h3>
                 Asset Management Code (cont.)
           </h3>
@@ -384,23 +384,27 @@ AssetManager.prototype.downloadAll = function(callback) {
       var img = new Image();
       var that = this;
       img.addEventListener(&quot;load&quot;, function() {
-          console.log(this.src + ' is loaded');
-          that.successCount += 1;
-          if (that.isDone()) {
-              callback();
-          }
+          <span class="important">that.successCount += 1;</span>
+          <span class="important">if (that.isDone()) { callback(); }</span>
       });
       img.addEventListener(&quot;error&quot;, function() {
-          that.errorCount += 1;
-          if (that.isDone()) {
-              callback();
-          }
+          <span class="important">that.errorCount += 1;</span>
+          <span class="important">if (that.isDone()) { callback(); }</span>
       });
       img.src = path;
       this.cache[path] = img;
   }
 }</pre>
             </section>
+        </article>
+        
+        <article>
+          <h3>
+            <a href="https://developer.mozilla.org/en/Canvas_tutorial/Transformations" target="_new">Canvas Translation</a>
+          </h3>
+          <p>
+            <img class='centered' style='height: 500px' height='500' width='500' src='images/Canvas_grid_translate.png'>
+          </p>
         </article>
 
         <article>
@@ -415,42 +419,13 @@ ASSET_MANAGER.downloadAll(function() {
   var x = 0, y = 0;
   var sprite = ASSET_MANAGER.getAsset('img/earth.png');
   
-  ctx.save(); // push ctx state
-  
   // move coordinate system to center of canvas
   ctx.translate(canvas.width/2, canvas.height/2);
+  
   // draw image centered
   ctx.drawImage(sprite, x - sprite.width/2, y - sprite.height/2);
-  
-  ctx.restore(); // pop ctx state
 });</pre>
             </section>
-        </article>
-        
-        <article>
-          <h3>
-            <a href="https://developer.mozilla.org/en/Canvas_tutorial/Transformations" target="_new">Canvas Translation</a>
-          </h3>
-          <p>
-            <img class='centered' style='height: 500px' height='500' width='500' src='images/Canvas_grid_translate.png'>
-          </p>
-        </article>
-        
-        <article>
-            <h3>
-                Rendering Images: Launch it!
-            </h3>
-            <p>
-                <a href="http://bad-aliens.appspot.com/phase02/index.html" target="_new">http://bad-aliens.appspot.com/phase02/index.html</a>
-            </p>
-            <ul>
-                <li>
-                    Waits for image to download
-                </li>
-                <li>
-                    Draws image in center of canvas
-                </li>
-            </ul>
         </article>
         
         <article class='fill'>
@@ -484,7 +459,7 @@ ASSET_MANAGER.downloadAll(function() {
                     Loop <code>update()</code> and <code>draw()</code>
                 </li>
                 <li>
-                    Do not use <code>setInterval()</code> and <code>setTimeout()</code>
+                    Do not use <code><strike>setInterval()</strike></code> and <code><strike>setTimeout()</strike></code>
                 </li>
                 <li>
                     Use <code>requestAnimationFrame(callback,element)</code>
@@ -492,7 +467,7 @@ ASSET_MANAGER.downloadAll(function() {
             </ul>
         </article>
         
-        <article class='smaller'>
+        <article>
             <h3>
                 Flying Aliens Code: Game engine
             </h3>
@@ -512,7 +487,16 @@ GameEngine.prototype.draw = function(callback) {
 GameEngine.prototype.update = function() {
   // loop through all entities, call update()
 }
-
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Flying Aliens Code: Game loop
+            </h3>
+          <section>
+              <pre>
 GameEngine.prototype.loop = function() {
   var now = Date.now();
   this.deltaTime = now - this.lastUpdateTimestamp;
@@ -536,7 +520,7 @@ GameEngine.prototype.start = function() {
   var that = this;
   (function gameLoop() {
       that.loop();
-      requestAnimFrame(gameLoop, that.ctx.canvas);
+      <span class="important">requestAnimFrame(gameLoop, that.ctx.canvas);</span>
   })();
 }
 </pre>
@@ -953,7 +937,7 @@ Alien.prototype.draw = function(ctx) {
             </ul>
         </article>
         
-        <article class="smaller">
+        <article>
             <h3>
                 Turret and Tracking Code: Event handlers
             </h3>
@@ -961,24 +945,17 @@ Alien.prototype.draw = function(ctx) {
               <pre>
 GameEngine.prototype.startInput = function() {
   var getXandY = function(e) {
-    <span class="important">var x =  e.clientX - that.ctx.canvas.getBoundingClientRect().left;</span>
-    <span class="important">x -= (that.ctx.canvas.width/2);</span> // 0,0 is in middle of canvas
-    <span class="important">var y = e.clientY - that.ctx.canvas.getBoundingClientRect().top -</span>
-    <span class="important">y -= (that.ctx.canvas.height/2);</span>
+    // offset to canvas element
+    var x =  e.clientX - that.ctx.canvas.getBoundingClientRect().left;
+    
+    // offset to 0,0 in middle of canvas
+    x -= (that.ctx.canvas.width/2);
+    
+    var y = e.clientY - that.ctx.canvas.getBoundingClientRect().top;
+    y -= (that.ctx.canvas.height/2);
+    
     return {x: x, y: y};
   }
-
-  var that = this;
-
-  this.ctx.canvas.addEventListener(&quot;click&quot;, function(e) {
-      that.click = getXandY(e);
-      e.stopPropagation();
-      e.preventDefault();
-  });
-
-  this.ctx.canvas.addEventListener(&quot;mousemove&quot;, function(e) {
-      that.mouse = getXandY(e);
-  });
 }
 </pre>
             </section>
@@ -1834,28 +1811,19 @@ index.html
         </article>
         
         <article>
-            <h3>HTML5 Games simply start with</h3>
-            <ul>
-                <li><code>update()/draw()</code> loop</li>
-                <li>Canvas</li>
-                <li>JavaScript</li>
-            </ul>
-        </article>
-        
-        <article>
             <h3>
                 Focus on the Fun
             </h3>
             <ul>
                 <li>
-                    Game engines do the heavy lifting
+                    Let game engines do the heavy lifting
                 </li>
                 <li>
-                    It's easy to get started
+                    Even iD started with an eight bit scroller (Commander Keen :)
                 </li>
-                <li>
-                    Go make memories and all-nighters!
-                </li>
+                    <li>
+                        Go make memories and all-nighters!
+                    </li>
             </ul>
         </article>
         
