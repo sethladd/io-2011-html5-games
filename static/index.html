@@ -252,20 +252,6 @@
           </h3>
           <ul>
             <li>
-                Create a space to draw on
-            </li>
-            <li>
-                Emulate the void of space
-            </li>
-          </ul>
-        </article>
-        
-        <article>
-            <h3>
-                Bootstrap: Technologies and Techniques
-            </h3>
-          <ul>
-            <li>
                 HTML5 Canvas
             </li>
             <li>
@@ -286,6 +272,7 @@
             <li>
                 WebGL?
             </li>
+          </ul>
         </article>
         
         <article>
@@ -434,20 +421,6 @@ ASSET_MANAGER.downloadAll(function() {
           <h3>
             Objective: Flying Aliens
           </h3>
-          <ul>
-              <li>
-                Draw and fly aliens
-              </li>
-              <li>
-                Manage things in the game
-              </li>
-              <li>
-                Create a game loop
-              </li>
-        </article>
-        
-        <article>
-            <h3>Flying Aliens: Technologies and Techniques</h3>
             <ul>
                 <li>
                     Game engine and Entities
@@ -591,18 +564,7 @@ Entity.prototype.drawSpriteCentered = function(ctx) {
         
         <article>
           <h3>
-            Objective: Fix Timing
-          </h3>
-          <ul>
-              <li>
-                Fix the &quot;wormhole&quot; bug
-              </li>
-          </ul>
-        </article>
-        
-        <article>
-          <h3>
-            Fix Timing: Technologies and Techniques
+            Objective: Fix Timing (no more wormholes)
           </h3>
           <ul>
               <li>
@@ -683,13 +645,8 @@ Alien.prototype.update = function() {
           <h3>
             Objective: Orient Alien Ships
           </h3>
-          <ul>
-              <li>
-                Orient alien ships towards Earth
-              </li>
-          </ul>
           <p>
-              <img class='centered' src="images/aliens-not-oriented.jpg" width="500" height="354">
+              <img class='centered' src="images/aliens-not-oriented.jpg" width="700">
           </p>
         </article>
         
@@ -809,24 +766,7 @@ Alien.prototype.draw = function(ctx) {
         
         <article>
             <h3>
-                Objective: Optimize Canvas Code
-            </h3>
-            <ul>
-                <li>
-                    Reduce work
-                </li>
-                <li>
-                    Save battery
-                </li>
-                <li>
-                    Cache rotated images
-                </li>
-            </ul>
-        </article>
-        
-        <article>
-            <h3>
-                Optimize Canvas Code: Technologies and Techniques
+                Objective: Optimize Canvas Code, Save Battery
             </h3>
             <ul>
                 <li>
@@ -903,23 +843,6 @@ Alien.prototype.draw = function(ctx) {
             </h3>
             <ul>
                 <li>
-                    Display the turret
-                </li>
-                <li>
-                    Turret tracks the mouse
-                </li>
-                <li>
-                    Record mouse movement and clicks
-                </li>
-            </ul>
-        </article>
-        
-        <article>
-            <h3>
-                Turret and Tracking: Technologies and Techniques
-            </h3>
-            <ul>
-                <li>
                     Listen for <code>click</code> and <code>mousemove</code> events
                 </li>
                 <li>
@@ -954,17 +877,17 @@ GameEngine.prototype.startInput = function() {
         </article>
         
         <article class="fill">
-            <h3>x = e.clientX</h3>
+            <h3><code>x = e.clientX</code></h3>
             <img src="images/click-1.png">
         </article>
         
         <article class="fill">
-            <h3>x = e.clientX - getBoundingClientRect()</h3>
+            <h3><code>x = e.clientX - getBoundingClientRect()</code></h3>
             <img src="images/click-2.png">
         </article>
         
         <article class="fill">
-            <h3>x = e.clientX - getBoundingClientRect() - (that.ctx.canvas.width/2)</h3>
+            <h3><code>e.clientX - getBoundingClientRect() - (canvas.width/2)</code></h3>
             <img src="images/click-3.png">
         </article>
         
@@ -1037,20 +960,6 @@ GameEngine.prototype.loop = function() {
         <article>
             <h3>
                 Objective: Shooting Lasers
-            </h3>
-            <ul>
-                <li>
-                    Shoot lasers!
-                </li>
-                <li>
-                    Remove entities from the world when no longer needed
-                </li>
-            </ul>
-        </article>
-        
-        <article>
-            <h3>
-                Shooting Lasers: Technologies and Techniques
             </h3>
             <ul>
                 <li>
@@ -1149,27 +1058,13 @@ GameEngine.prototype.update = function() {
             </h3>
             <ul>
                 <li>
-                    Sprite sheets
-                </li>
-                <li>
-                    Animations
-                </li>
-            </ul>
-        </article>
-        
-        <article>
-            <h3>
-                Explosions: Technologies and Techniques
-            </h3>
-            <ul>
-                <li>
-                    Replace entities when behavior changes
-                </li>
-                <li>
                     Animation class
                 </li>
                 <li>
                     Sprite sheets
+                </li>
+                <li>
+                    Replace entities when behavior changes
                 </li>
             </ul>
             <p>
@@ -1265,20 +1160,6 @@ Bullet.prototype.update = function() {
             </h3>
             <ul>
                 <li>
-                    Shooting laser bullets sounds
-                </li>
-                <li>
-                    Wire in sound support into Asset Manager
-                </li>
-            </ul>
-        </article>
-        
-        <article>
-            <h3>
-                Sounds: Technologies and Techniques
-            </h3>
-            <ul>
-                <li>
                     HTML5 Audio not quite there for games. <a href="http://goo.gl/adIqK" target="_new">Learn</a> <a href="http://goo.gl/WTuSF" target="_new">more</a>.
                 </li>
                 <ul><li>
@@ -1359,22 +1240,8 @@ Bullet.prototype.update = function() {
             </h3>
             <ul>
                 <li>
-                    Blow up aliens (visuals and sounds)
+                    Add collision detection
                 </li>
-                <li>
-                    Add basic collision detection
-                </li>
-                <li>
-                    Aliens collide with Earth
-                </li>
-            </ul>
-        </article>
-        
-        <article>
-            <h3>
-                Blow Up Alien Ships: Technologies and Techniques
-            </h3>
-            <ul>
                 <li>
                     Give every object a radius
                 </li>
@@ -1444,21 +1311,7 @@ Entity.prototype.draw = function(ctx) {
             </h3>
             <ul>
                 <li>
-                    Display score
-                </li>
-                <li>
-                    Display lives left
-                </li>
-            </ul>
-        </article>
-        
-        <article>
-            <h3>
-                Display Game Stats: Technologies and Techniques
-            </h3>
-            <ul>
-                <li>
-                    Canvas <code>drawText()</code>
+                    Canvas <code>fillText()</code>
                 </li>
                 <li>
                     Advanced: <a href="http://impactjs.com/font-tool/" target="_new">Sprite sheet based fonts</a> from <a href="http://impactjs.com" target="_new">Impact</a>
@@ -1499,20 +1352,6 @@ EvilAliens.prototype.drawScore = function() {
         <article>
             <h3>
                 Objective: Measure Performance
-            </h3>
-            <ul>
-                <li>
-                    FPS
-                </li>
-                <li>
-                    JavaScript profiling
-                </li>
-            </ul>
-        </article>
-        
-        <article>
-            <h3>
-                Measure Performance: Technologies and Techniques
             </h3>
             <ul>
                 <li>
@@ -1606,13 +1445,8 @@ GameEngine.prototype.loop = function() {
         </article>
         
         <article>
-            <h3>
-                Offline Play: Technologies and Techniques
-            </h3>
+            <h3>Offline Play: Application Cache</h3>
             <ul>
-                <li>
-                    Application Cache - <a href="http://appcachefacts.info" target="_new">appcachefacts.info</a>
-                </li>
                 <li>
                     5MB limit, installable web apps get unlimited
                 </li>
@@ -1623,7 +1457,7 @@ GameEngine.prototype.loop = function() {
                     Changes reflected on second load
                 </li>
                 <li>
-                    Reduce network and server load
+                    <a href="http://appcachefacts.info" target="_new">appcachefacts.info</a>
                 </li>
             </ul>
         </article>
