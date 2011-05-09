@@ -91,9 +91,6 @@
         <p>
             Tweet it up: <a href="https://twitter.com/#!/search/%23io2011" target="_new">#io2011</a> <a href="https://twitter.com/#!/search/%23chrome" target="_new">#chrome</a>
         </p>
-        <p>
-            Feedback: <a href="http://j.mp/rategametalk" target="_new">j.mp/rategametalk</a>
-        </p>
       </article>
       
       <article class='fill'>
@@ -224,7 +221,7 @@
         
         <article>
             <h3>Break it down (cont.)</h3>
-            <ul
+            <ul>
                 <li>
                     Shooting: Input handling, removing entities
                 </li>
@@ -951,12 +948,31 @@ GameEngine.prototype.startInput = function() {
     // offset to 0,0 in middle of canvas
     x -= (that.ctx.canvas.width/2);
     
-    var y = e.clientY - that.ctx.canvas.getBoundingClientRect().top;
-    y -= (that.ctx.canvas.height/2);
+    // same thing for y
     
     return {x: x, y: y};
   }
-}
+  
+  ...
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Turret and Tracking Code: Event handlers (cont)
+            </h3>
+          <section>
+              <pre>
+GameEngine.prototype.startInput = function() {
+    ...
+    this.ctx.canvas.addEventListener("click", function(e) {
+      <span class="important">that.click = getXandY(e);</span>
+    }, false);
+
+    this.ctx.canvas.addEventListener("mousemove", function(e) {
+      <span class="important">that.mouse = getXandY(e);</span>
+    }, false);
 </pre>
             </section>
         </article>
@@ -1029,7 +1045,7 @@ GameEngine.prototype.loop = function() {
                     Add a <code>removeFromWorld</code> bit to Entities
                 </li>
                 <li>
-                    Check in game <code>update()</code>
+                    Check <code>removeFromWorld</code> in <code>GameEngine</code> <code>update()</code>
                 </li>
             </ul>
         </article>
@@ -1182,26 +1198,6 @@ Animation.prototype.isDone = function() {
         
         <article>
             <h3>
-                Explosions Code: Replace bullets with explosions
-            </h3>
-          <section>
-              <pre>
-Bullet.prototype.update = function() {
-  ...
-  } else if (this.explodesHere()) {
-    this.game.addEntity(new BulletExplosion(this.game,
-                                            this.explodesAt.x,
-                                            this.explodesAt.y));
-    this.removeFromWorld = true;
-  } else {
-  ...
-}
-</pre>
-            </section>
-        </article>
-        
-        <article>
-            <h3>
                 Explosions Code: Animate explosions over time
             </h3>
           <section>
@@ -1215,8 +1211,28 @@ function BulletExplosion(game, x, y) {
 }
 
 BulletExplosion.prototype.draw = function(ctx) {
-  this.animation.drawFrame(<span class="important">this.game.clockTick</span>, ctx, this.x, this.y,
+  <span class="important">this.animation.drawFrame</span>(this.game.clockTick, ctx, this.x, this.y,
                            this.scaleFactor());
+  ...
+}
+</pre>
+            </section>
+        </article>
+        
+        <article>
+            <h3>
+                Explosions Code: Replace bullets with explosions
+            </h3>
+          <section>
+              <pre>
+Bullet.prototype.update = function() {
+  ...
+  } else if (this.explodesHere()) {
+    this.game.addEntity(new BulletExplosion(this.game,
+                                            this.explodesAt.x,
+                                            this.explodesAt.y));
+    this.removeFromWorld = true;
+  } else {
   ...
 }
 </pre>
@@ -1458,23 +1474,6 @@ EvilAliens.prototype.drawScore = function() {
 }
 </pre>
             </section>
-        </article>
-        
-        <article>
-            <h3>
-                Display Game Stats: Launch it!
-            </h3>
-            <p>
-                <a href="http://bad-aliens.appspot.com/phase12/index.html" target="_new">http://bad-aliens.appspot.com/phase12/index.html</a>
-            </p>
-            <ul>
-                <li>
-                    Displaying score, lives remaining
-                </li>
-            </ul>
-            <p>
-                <img class="centered" src="images/screenshot-phase-12.png">
-            </p>
         </article>
         
         <article class='fill'>
