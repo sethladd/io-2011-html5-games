@@ -941,6 +941,40 @@ Alien.prototype.draw = function(ctx) {
           <section>
               <pre>
 GameEngine.prototype.startInput = function() {
+    ...
+    this.ctx.canvas.addEventListener("click", function(e) {
+      <span class="important">that.click = getXandY(e);</span>
+    }, false);
+
+    this.ctx.canvas.addEventListener("mousemove", function(e) {
+      <span class="important">that.mouse = getXandY(e);</span>
+    }, false);
+</pre>
+            </section>
+        </article>
+        
+        <article class="fill">
+            <h3>x = e.clientX</h3>
+            <img src="images/click-1.png">
+        </article>
+        
+        <article class="fill">
+            <h3>x = e.clientX - getBoundingClientRect()</h3>
+            <img src="images/click-2.png">
+        </article>
+        
+        <article class="fill">
+            <h3>x = e.clientX - getBoundingClientRect() - (that.ctx.canvas.width/2)</h3>
+            <img src="images/click-3.png">
+        </article>
+        
+        <article>
+            <h3>
+                Turret and Tracking Code: Event handlers
+            </h3>
+          <section>
+              <pre>
+GameEngine.prototype.startInput = function() {
   var getXandY = function(e) {
     // offset to canvas element
     var x =  e.clientX - that.ctx.canvas.getBoundingClientRect().left;
@@ -954,25 +988,6 @@ GameEngine.prototype.startInput = function() {
   }
   
   ...
-</pre>
-            </section>
-        </article>
-        
-        <article>
-            <h3>
-                Turret and Tracking Code: Event handlers (cont)
-            </h3>
-          <section>
-              <pre>
-GameEngine.prototype.startInput = function() {
-    ...
-    this.ctx.canvas.addEventListener("click", function(e) {
-      <span class="important">that.click = getXandY(e);</span>
-    }, false);
-
-    this.ctx.canvas.addEventListener("mousemove", function(e) {
-      <span class="important">that.mouse = getXandY(e);</span>
-    }, false);
 </pre>
             </section>
         </article>
