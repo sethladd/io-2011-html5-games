@@ -382,6 +382,10 @@ AssetManager.prototype.downloadAll = function(callback) {
             </section>
         </article>
         
+        <article class="fill">
+            <img src="images/translate-0x0-point.png">
+        </article>
+        
         <article>
           <h3>
             <a href="https://developer.mozilla.org/en/Canvas_tutorial/Transformations" target="_new">Canvas Translation</a>
@@ -882,12 +886,12 @@ GameEngine.prototype.startInput = function() {
         </article>
         
         <article class="fill">
-            <h3><code>x = e.clientX - getBoundingClientRect()</code></h3>
+            <h3><code>x = e.clientX - canvas.getBoundingClientRect().left</code></h3>
             <img src="images/click-2.png">
         </article>
         
         <article class="fill">
-            <h3><code>e.clientX - getBoundingClientRect() - (canvas.width/2)</code></h3>
+            <h3><code>e.clientX - canvas.getBoundingClientRect().left - (canvas.width/2)</code></h3>
             <img src="images/click-3.png">
         </article>
         
@@ -1072,17 +1076,12 @@ GameEngine.prototype.update = function() {
             </p>
         </article>
         
-        <article class="smaller">
+        <article>
             <h3>
                 Explosions Code: Animation
             </h3>
           <section>
               <pre>
-function Animation(spriteSheet, frameWidth, frameDuration, loop) {
-  ...
-  this.totalTime = (this.spriteSheet.width / this.frameWidth) * this.frameDuration;
-}
-
 Animation.prototype.drawFrame = function(tick, ctx, x, y, scaleBy) {
   ...
   this.elapsedTime += tick;
@@ -1672,6 +1671,9 @@ index.html
                 <li>
                     Even iD started with an eight bit scroller (Commander Keen :)
                 </li>
+                <li>
+                    Have fun!
+                </li>
             </ul>
         </article>
         
@@ -1681,7 +1683,7 @@ index.html
             </h3>
             <ul>
                 <li>
-                    Questions?
+                    Ask a live question, get a cool HTML5 keychain.
                 </li>
                 <li>
                     Google Moderator: <a href="http://j.mp/games-qa" target="_new">j.mp/games-qa</a>
@@ -1699,7 +1701,7 @@ index.html
         </article>
         
         <article class='fill'>
-          <iframe src='https://www.google.com/moderator/#16/e=7acc5'></iframe>
+          <iframe src='https://www.google.com/moderator/#1/e=7acc5&amp;t=7acc5.41'></iframe>
         </article>
         
         <!--
