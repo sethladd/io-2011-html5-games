@@ -32,6 +32,13 @@
 	  })();
 
 	</script>
+	
+	<script type="text/javascript">
+	window.addEventListener('slideenter', function(e) {
+      var slideNumber = e.slideNumber;
+      _gaq.push(['_trackPageview', '#'+slideNumber]);
+    });
+	</script>
   </head>
   
   <style>
